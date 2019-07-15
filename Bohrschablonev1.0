@@ -20,8 +20,8 @@ for i in range(0,int(anzahl_bohrung)):
     grad = winkel*i
     liste.append(grad)
     if grad < 90:
-        bohrung_x = math.sin(grad)*(d/2)
-        bohrung_y = math.cos(grad)*(d/2)
+        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
+        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad == 90:
@@ -30,8 +30,8 @@ for i in range(0,int(anzahl_bohrung)):
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad >90<180:
-        bohrung_x = math.sin(grad)*(d/2)
-        bohrung_y = math.cos(grad)*(d/2)
+        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
+        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad == 180:
@@ -40,8 +40,8 @@ for i in range(0,int(anzahl_bohrung)):
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad >180<270:
-        bohrung_x = math.sin(grad)*(d/2)
-        bohrung_y = math.cos(grad)*(d/2)
+        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
+        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad == 270:
@@ -50,14 +50,12 @@ for i in range(0,int(anzahl_bohrung)):
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
     elif grad >270<360:
-        bohrung_x = math.sin(grad)*(d/2)
-        bohrung_y = math.cos(grad)*(d/2)
+        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
+        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
         x_wert.append(bohrung_x)
         y_wert.append(bohrung_y)
 
 #Ausgaben
-
-print(winkel)
 
 for i in range (0,anzahl_bohrung):
     print("X-Wert/Y-Wert Bohrung",i+1,round(x_wert[i],3),"mm",round(y_wert[i],3),"mm")
