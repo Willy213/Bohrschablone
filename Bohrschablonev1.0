@@ -56,6 +56,9 @@ for i in range(0,int(anzahl_bohrung)):
         y_wert.append(bohrung_y)
 
 #Ausgaben
+test_y = math.cos(72*math.pi/180)*(360)
+test_x = math.sin(72*math.pi/180)*(360)
+print(test_y,test_x)
 
 for i in range (0,anzahl_bohrung):
     print("X-Wert/Y-Wert Bohrung",i+1,round(x_wert[i],3),"mm",round(y_wert[i],3),"mm")
@@ -74,7 +77,9 @@ mittelpunkt1 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30)
 mittelpunkt2 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30,start=180,fill='black')
 kreis_dargestellt = c.create_oval(w*0.05,h*0.05,w*0.95,h*0.95)
 
-linie1 = c.create_line(w/2,h/2,w/2,h*0.05)
+linie1 = c.create_line(w/2,h/2,w/2,h*0.05,dash=4)
+
+linie2 = c.create_line(400,400,math.sin(72*math.pi/180)*(360)+400,400-math.cos(72*math.pi/180)*(360),dash=4)
 
 #Grafischer Teil Ende
 
