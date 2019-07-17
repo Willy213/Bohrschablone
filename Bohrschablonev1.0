@@ -8,7 +8,7 @@ w,h=800,800
 d = float(input("Durchmesser in [mm] angeben: "))
 anzahl_bohrung = int(input("Bitte die Anzahl der Bohrungen Angeben: "))
 
-#Rechnugnen
+#Rechnungen
 
 liste=[]
 x_wert=[]
@@ -19,45 +19,16 @@ winkel = kreis/anzahl_bohrung
 for i in range(0,int(anzahl_bohrung)):
     grad = winkel*i
     liste.append(grad)
-    if grad < 90:
-        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
-        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad == 90:
-        bohrung_x = 0
-        bohrung_y = d/2
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad >90<180:
-        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
-        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad == 180:
-        bohrung_x = d/2
-        bohrung_y = 0
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad >180<270:
-        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
-        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad == 270:
-        bohrung_x = d/2
-        bohrung_y = 0
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-    elif grad >270<360:
-        bohrung_x = math.sin(grad*math.pi/180)*(d/2)
-        bohrung_y = math.cos(grad*math.pi/180)*(d/2)
-        x_wert.append(bohrung_x)
-        y_wert.append(bohrung_y)
-
+    bohrung_x = math.sin(grad*math.pi/180)*(d/2)
+    bohrung_y = math.cos(grad*math.pi/180)*(d/2)
+    x_wert.append(bohrung_x)
+    y_wert.append(bohrung_y)
+    
 #Ausgaben
+    
 test_y = math.cos(72*math.pi/180)*(360)
 test_x = math.sin(72*math.pi/180)*(360)
+print(liste)
 print(test_y,test_x)
 
 for i in range (0,anzahl_bohrung):
@@ -77,11 +48,10 @@ mittelpunkt1 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30)
 mittelpunkt2 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30,start=180,fill='black')
 kreis_dargestellt = c.create_oval(w*0.05,h*0.05,w*0.95,h*0.95)
 
-linie1 = c.create_line(w/2,h/2,w/2,h*0.05,dash=4)
-
-linie2 = c.create_line(400,400,math.sin(72*math.pi/180)*(360)+400,400-math.cos(72*math.pi/180)*(360),dash=4)
+for i in range (0,anzahl_bohrung):
+    grad = winkel*i    
+    linie2 = c.create_line(400,400,math.sin(grad*math.pi/180)*(360)+400,400-math.cos(grad*math.pi/180)*(360),dash=4)
 
 #Grafischer Teil Ende
-
 
 fenster.mainloop()
