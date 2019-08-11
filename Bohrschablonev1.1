@@ -1,0 +1,69 @@
+import math
+from tkinter import *
+
+w,h=600,600
+x,y=800,1200
+
+#Abfragen
+
+##d = float(input("Durchmesser in [mm] angeben: "))
+##anzahl_bohrung = int(input("Bitte die Anzahl der Bohrungen Angeben: "))
+
+#Rechnungen
+
+liste=[]
+x_wert=[]
+y_wert=[]
+
+def berechnung():
+    #Daten auslesen
+    Durchmesser=float(entryDurchmesser.get())
+    Anzahl=int(entryBohrungsanzahl.get())
+    winkel=360/Anzahl
+    #Berechnung der Daten
+    for i in range(0,int(Anzahl)):
+        grad = winkel*i
+        liste.append(grad)
+        bohrung_x = math.sin(grad*math.pi/180)*(Durchmesser/2)
+        bohrung_y = math.cos(grad*math.pi/180)*(Durchmesser/2)
+        x_wert.append(bohrung_x)
+        y_wert.append(bohrung_y)
+    #Ausgabe der Daten
+    c.delete(ALL)
+    mittelpunkt1 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30)
+    mittelpunkt2 = c.create_arc(w/2-30,h/2-30,w/2+30,h/2+30,start=180,fill='black')
+    kreis_dargestellt = c.create_oval(w*0.05,h*0.05,w*0.95,h*0.95)
+    
+    for i in range (0,Anzahl):
+        grad = winkel*i    
+        linie = c.create_line(w/2,h/2,math.sin(grad*math.pi/180)*(270)+w/2,h/2-math.cos(grad*math.pi/180)*(270),dash=4)
+
+#Definition Fenster
+
+fenster = Tk()
+fenster.title ("Bohrungsschablone")
+c=Canvas(fenster,width=x,height=y)
+c.pack()
+
+#Label und Eingabefeld für Eingaben (Kreisdurchmesser)
+labelDurchmesser= Label(master=fenster, bg='#00FF00', text="Durchmesser des Kreises [mm]:")
+labelDurchmesser.place(x=20, y=620, width=200, height=30)
+
+entryDurchmesser=Entry(master=fenster, bg='#FFFFFF')
+entryDurchmesser.place(x=220, y=620, width=150, height=30)
+
+#Label und Eingabefeld für Eingabe (Anzahl der Bohrungen)
+labelBohrungsanzahl= Label(master=fenster, bg='#00FF00', text="Anzahl der Bohrungen:")
+labelBohrungsanzahl.place(x=20, y=670, width=200, height=30)
+
+entryBohrungsanzahl=Entry(master=fenster, bg='#FFFFFF')
+entryBohrungsanzahl.place(x=220, y=670, width=150, height=30)
+
+#Button zum Ausführen
+buttonAusfuehren=Button(master=fenster, bg='#00FFFF', text="Energie!", command=berechnung)
+buttonAusfuehren.place(x=20,y=720, width=150, height=30)
+
+
+#Grafischer Teil Ende
+
+fenster.mainloop()
